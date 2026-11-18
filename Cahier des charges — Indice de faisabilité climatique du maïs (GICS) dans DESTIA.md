@@ -4,17 +4,26 @@ Nov 18, 2026 · Premier jet, à valider avec l'encadrant
 
 ## 1. Contexte et objectifs
 
-Le projet doit livrer un indicateur de faisabilité climatique du maïs (GICS) **validé sur les rendements observés** et intégré au démonstrateur DESTIAG. DESTIAG fait partie du PEPR TRACCS, projet PC3 DEMOCLIMA (LSCE et INRAE Agroclim).
+Le projet doit livrer un indicateur de faisabilité climatique du maïs (GICS) **validé sur les rendements observés** et intégré au démonstrateur DESTIAG. 
 
 Le GICS (Caubel et al. 2015) agrège des indicateurs écoclimatiques par phase de développement (gel, froid, chaleur, déficit et excès d'eau, rayonnement). Il donne un score entre 0 et 1 par maille et par année. Une version « améliorée » existe déjà : elle s'appuie sur un bilan hydrique, des degrés-jours et un semis automatique.
+
+Problématiques :
+1. Dans quelle mesure est-il pertinent d'ajouter les données de sol au modèle ?
+2. Comment recalibrer les coefficients de normalisation et d'agrégation du modèle de sorte à minimiser l'écart au rendement réel ?
+3. Comment évaluer le niveau de confiance que l'on peut accorder aux sorties du modèle ?
 
 Objectifs :
 
 1. Disposer d'un code fiable, documenté et reproductible pour calculer le GICS en France (SAFRAN) et en Europe (AgERA5).
-2. Valider l'indicateur : corrélation avec les rendements Agreste en France, avec Tani et al. 2025 et AGRI4CAST en Europe.
-3. Recalibrer les coefficients de normalisation et les pondérations sur ces rendements.
-4. Appliquer l'indicateur aux projections climatiques (EURO-CORDEX corrigées) pour évaluer l'évolution de la faisabilité.
-5. Restituer les résultats sous une forme exploitable par les semenciers, utilisateurs finaux de DESTIAG.
+2. Valider l'indicateur GICS : corrélation avec les rendements Agreste en France, avec Tani et al. 2025 et AGRI4CAST en Europe.
+3. Recalibrer les coefficients de normalisation et les pondérations sur les entrées du modèle, puis dans un deuxième temps, ajuster les coefficients d'agrégation de ce même modèle.
+4. Trouver d'éventuels nouveaux indicateurs climatiques.
+5. Repérer la localisation des différentes espèces de maïs.
+6. Valider le modèle de projection climatique.
+7. Appliquer l'indicateur aux projections climatiques (EURO-CORDEX corrigées) pour évaluer l'évolution de la faisabilité.
+8. Restituer les résultats sous une forme exploitable par les semenciers, utilisateurs finaux de DESTIAG (application web pour présenter les résultats)
+9. Proposer un deuxième modèle pour valider la pertinence du premier.
 
 ## 2. Périmètre
 
@@ -39,25 +48,25 @@ Le périmètre couvre le maïs grain pluvial et irrigué, en France métropolita
 | Semenciers | Utilisateurs finaux | Cartes et tendances lisibles, par groupe de précocité et par région |
 | Encadrants pédagogiques AgroParisTech | Évaluation | Livrables et soutenance dans les délais |
 
-## 4. Exigences fonctionnelles
+## 4. Exigences fonctionnelles (échéancier)
 
 Le système doit enchaîner lecture des données, simulation de la culture, calcul des indicateurs, agrégation, validation et restitution. Chaque étape doit pouvoir être lancée seule.
 
 | N° | Exigence | Priorité | État au 18/11/2026 |
 | --- | --- | --- | --- |
-| F1 | Lire le climat journalier SAFRAN et AgERA5 dans un format commun (pluie, températures, rayonnement, ETP) | Haute | France fait, Europe codé non testé |
-| F2 | Sélectionner les mailles agricoles (terres arables ≥ 2 %, hors sols urbains) et leur affecter une variété | Haute | Fait |
-| F3 | Déterminer une date de semis automatique par maille et par année, avec la raison en cas d'échec | Haute | Fait |
-| F4 | Simuler les stades s1 à s6 par cumul d'unités de développement | Haute | Fait (sans pynar) |
-| F5 | Simuler le bilan hydrique (réserve, Ks) et la température du sol | Haute | Fait |
-| F6 | Calculer les 19 indicateurs écoclimatiques (versions originale et améliorée) | Haute | Fait |
-| F7 | Agréger en GICS non irrigué et irrigué | Haute | Fait |
-| F8 | Comparer le GICS aux rendements Agreste par département | Haute | Codé, données manquantes |
-| F9 | Recalibrer coefficients et poids sur les rendements | Haute | À faire |
-| F10 | Comparer aux rendements européens (Tani 2025, AGRI4CAST) | Moyenne | À faire |
-| F11 | Calculer le GICS sur les projections EURO-CORDEX et ses tendances par horizon | Moyenne | À faire |
-| F12 | Produire cartes, séries et tableaux pour les semenciers | Moyenne | Cartes de base faites |
-| F13 | Exporter les résultats dans le format attendu par DESTIAG | Moyenne | Format à définir |
+| F1 | Lire le climat journalier SAFRAN et AgERA5 dans un format commun (pluie, températures, rayonnement, ETP) | Haute | 15 décembre |
+| F2 | Sélectionner les mailles agricoles (terres arables ≥ 2 %, hors sols urbains) et leur affecter une variété | Haute | 15 décembre |
+| F3 | Déterminer une date de semis automatique par maille et par année, avec la raison en cas d'échec | Haute | 15 décembre |
+| F4 | Simuler les stades s1 à s6 par cumul d'unités de développement | Haute | 15 décembre |
+| F5 | Simuler le bilan hydrique (réserve, Ks) et la température du sol | Haute | 15 décembre |
+| F6 | Calculer les 19 indicateurs écoclimatiques (versions originale et améliorée) | Haute | 15 décembre |
+| F7 | Agréger en GICS non irrigué et irrigué | Haute | 15 décembre |
+| F8 | Comparer le GICS aux rendements Agreste par département | Haute | 15 décembre |
+| F9 | Recalibrer coefficients et poids sur les rendements | Haute | Horizon janvier 2027 |
+| F10 | Comparer aux rendements européens (Tani 2025, AGRI4CAST) | Moyenne | Horizon janvier/février 2027 |
+| F11 | Calculer le GICS sur les projections EURO-CORDEX et ses tendances par horizon | Moyenne | Horizon janvier 2027 |
+| F12 | Produire cartes, séries et tableaux pour les semenciers | Moyenne | Horizon janvier 2027 |
+| F13 | Exporter les résultats dans le format attendu par DESTIAG | Moyenne | Horizon janvier 2027 |
 
 ## 5. Données d'entrée
 
