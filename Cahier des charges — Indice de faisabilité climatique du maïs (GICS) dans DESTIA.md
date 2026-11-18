@@ -1,6 +1,6 @@
 # Cahier des charges — Indice de faisabilité climatique du maïs (GICS) dans DESTIAG
 
-Nov 18, 2026 · @Rémy · Premier jet, à valider avec l'encadrant
+Nov 18, 2026 · Premier jet, à valider avec l'encadrant
 
 ## 1. Contexte et objectifs
 
