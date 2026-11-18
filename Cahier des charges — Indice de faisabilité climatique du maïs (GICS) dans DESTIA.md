@@ -38,7 +38,25 @@ Le périmètre couvre le maïs grain pluvial et irrigué, en France métropolita
 | Projections EURO-CORDEX corrigées (Spirit-X) | Conseil variétal ou économique |
 | GICS non irrigué et irrigué | Interface web DESTIAG (fournie par le projet) |
 
-## 4. Exigences fonctionnelles (échéancier)
+
+## 3. Données d'entrée
+
+Toutes les données nécessaires au calcul France sont disponibles. La validation et l'Europe dépendent de données publiques à télécharger.
+
+| Donnée | Usage | Source | Statut |
+| --- | --- | --- | --- |
+| SAFRAN 2005-2025 | Climat France | Siclima (zarr) | Disponible |
+| Grille SAFRAN, sols BDGSF, unités de sol | Mailles et RU France | Siclima | Disponible |
+| Rendements départementaux maïs grain non irrigué | Validation France | Agreste, SAA | À télécharger |
+| AgERA5 1999-2024 et ETP | Climat Europe | Copernicus CDS | À reconstruire sur la grille d'origine |
+| Sols Senges, mailles et variétés AgERA5 | Europe | Fournis | Disponible, rsat = ru à corriger |
+| Rendements européens | Validation Europe | Tani et al. 2025, AGRI4CAST | AGRI4CAST disponible, Tani à télécharger |
+| Irrigation européenne | Masque pluvial | ECIRA, Zajac 2022, Eurostat | À télécharger |
+| Projections EURO-CORDEX EUR-11 corrigées | Climat futur | Spirit-X (interne) | À demander à l'encadrant |
+| Bibliothèque pynar | Phénologie de référence | INRAE (interne) | À demander, pour contrôle |
+
+
+## 4. Échéancier
 
 Le système doit enchaîner lecture des données, simulation de la culture, calcul des indicateurs, agrégation, validation et restitution. Chaque étape doit pouvoir être lancée seule.
 
@@ -58,18 +76,14 @@ Le système doit enchaîner lecture des données, simulation de la culture, calc
 | F12 | Produire cartes, séries et tableaux pour les semenciers | Moyenne | Horizon janvier 2027 |
 | F13 | Exporter les résultats dans le format attendu par DESTIAG | Moyenne | Horizon janvier 2027 |
 
-## 5. Données d'entrée
 
-Toutes les données nécessaires au calcul France sont disponibles. La validation et l'Europe dépendent de données publiques à télécharger.
+## 5. Points d'attention
+L'indicateur est jugé sur sa capacité à expliquer la variabilité interannuelle des rendements observés, pas sur sa valeur absolue.
 
-| Donnée | Usage | Source | Statut |
-| --- | --- | --- | --- |
-| SAFRAN 2005-2025 | Climat France | Siclima (zarr) | Disponible |
-| Grille SAFRAN, sols BDGSF, unités de sol | Mailles et RU France | Siclima | Disponible |
-| Rendements départementaux maïs grain non irrigué | Validation France | Agreste, SAA | À télécharger |
-| AgERA5 1999-2024 et ETP | Climat Europe | Copernicus CDS | À reconstruire sur la grille d'origine |
-| Sols Senges, mailles et variétés AgERA5 | Europe | Fournis | Disponible, rsat = ru à corriger |
-| Rendements européens | Validation Europe | Tani et al. 2025, AGRI4CAST | AGRI4CAST disponible, Tani à télécharger |
-| Irrigation européenne | Masque pluvial | ECIRA, Zajac 2022, Eurostat | À télécharger |
-| Projections EURO-CORDEX EUR-11 corrigées | Climat futur | Spirit-X (interne) | À demander à l'encadrant |
-| Bibliothèque pynar | Phénologie de référence | INRAE (interne) | À demander, pour contrôle |
+- **Traçabilité** : chaque indicateur, seuil et coefficient est rattaché à une référence (Caubel 2015, STICS, FAO-56) ou à une calibration documentée.
+- **Validation France** : corrélation GICS / rendement Agreste par département, en brut et en anomalies, sur 2010-2025. Agrégation des mailles pondérée par la part de terres arables.
+- **Comparaison des versions** : originale contre améliorée, et contribution de chaque phase et de chaque stress.
+- **Calibration** : ajustement des coefficients sur une partie des années, évaluation sur les autres (validation croisée) pour éviter le surajustement.
+- **Cohérence agronomique** : dates de semis, de floraison et de maturité comparées aux observations disponibles (Arvalis, rapport de stage), taux de maturité non atteinte par région.
+- **Sensibilité** : effet des hypothèses clés (règles de semis, RU, décalage d'un jour SAFRAN) sur le GICS.
+- **Projections** : résultats présentés par horizon et scénario avec la dispersion entre modèles climatiques.
