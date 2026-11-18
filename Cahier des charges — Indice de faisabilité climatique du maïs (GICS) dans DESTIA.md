@@ -104,6 +104,7 @@ Le code doit pouvoir être repris par une autre personne sans l'aide de ses aute
 | Versionnement | Dépôt git, revue de code avant fusion |
 
 ## 8. Livrables
+### 8.1 Livrables à long terme
 
 | Livrable | Contenu | Destinataire |
 | --- | --- | --- |
@@ -113,6 +114,16 @@ Le code doit pouvoir être repris par une autre personne sans l'aide de ses aute
 | L4 — Résultats sur projections | GICS futur par horizon et scénario, avec incertitude | DESTIAG, semenciers |
 | L5 — Supports pour semenciers | Cartes et fiches de synthèse par groupe de précocité | Semenciers |
 | L6 — Rapport et soutenance | Rapport Fil Rouge et présentation | AgroParisTech |
+
+### 8.2 Livrables à court terme
+| Livrable | Date | Destinataire |
+| --- | --- | --- |
+| L1 — Cahier des charges | 25 novembre 2026 | Professeurs encadrants |
+| L2 — Bibliographie | 15 décembre | Professeurs encadrants |
+| L3 — Rapport et soutenance intermédiaire | Courant janvier 2027 | Encadrants |
+| L4 — Rapport et soutenance finale | Février 2027 | Encadrants |
+
+
 
 ## 9. Jalons et planning
 
